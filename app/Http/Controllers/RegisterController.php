@@ -12,10 +12,6 @@ class RegisterController extends Controller
 {
     //
 
-    public function rumah()
-    {
-        return view('rumah');
-    }
     public function register()
     {
         return view('auth.masuk');
@@ -31,7 +27,7 @@ class RegisterController extends Controller
             'active' => 1
         ]);
 
-        Session::flash('message', 'Register Successfull. Your Account has been activated, please login with your credentials.');
+        Session::flash('message', 'Register Successful, Please login with your credentials.');
         return redirect('/');
     }
 }

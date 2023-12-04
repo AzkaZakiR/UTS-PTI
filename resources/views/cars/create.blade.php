@@ -22,17 +22,19 @@
         @include('layouts.atas')
         <div class="container-fluid page-body-wrapper"> 
             @include('layouts.sidebar')
-            <div class="main-panel">
+            <div class="main-panel ">
                 <div class="content-scroller "> 
-                    <div class="card">
+                    <div class="card m-5">
+                        @if(!empty($car))
+                        <h2 class="text-center mt-2">Edit car</h2>
+                        @else
+                        <h2 class="text-center mt-2">Add car</h2>
+                        @endif
                         <div class="card-body">
-                            <form  method="POST"
+                            {{-- <form  method="POST" action="{{!empty($car) ? route('updatecars', $car->id) : route('storecars') }}"  enctype="multipart/form-data"> --}}
+                            <form method="POST" action="{{ !empty($car) ? route('updatecars', $car->id) : route('storecars') }}" enctype="multipart/form-data">
                              {{-- action="{{ route('storecars')}}" --}}
-                            action="{{!empty($car) ? route('updatecars', $car->id) : route('storecars') }}"  enctype="multipart/form-data"
-                            {{-- @if($car)
-                                @method('PATCH')
-                            @endif --}}
-                             >
+                            {{-- action="{{!empty($car) ? route('updatecars', $car->id) : route('storecars') }}"  enctype="multipart/form-data"> --}}
                                 @csrf
                                 @if(!empty($car))
                                 @method('PATCH')
@@ -55,7 +57,7 @@
                         
                                 <div class="form-group">
                                     <label for="year">Year:</label>
-                                    <input type="text" class="form-control" id="year" name="year" required value="{{ isset($car) ? $car->year : 'none' }}">
+                                    <input type="text" class="form-control" id="year" name="year" required value="{{ isset($car) ? $car->year : '' }}">
                                 </div>
                         
                                 <div class="mb-3">       
@@ -63,10 +65,9 @@
                                     <select class="form-control" id="status" name="status">
                                         <option value="Rented" {{ isset($car) && $car->status === 'Available' ? 'selected' : '' }}>Available</option>      
                                         <option value="Rented" {{ isset($car) && $car->status === 'Rented' ? 'selected' : '' }}>Rented</option>
-        <option value="Maintenance" {{ isset($car) && $car->status === 'Maintenance' ? 'selected' : '' }}>Maintenance</option>
+                                        <option value="Maintenance" {{ isset($car) && $car->status === 'Maintenance' ? 'selected' : '' }}>Maintenance</option>
                                     </select>
                                 </div>
-                        
                                 <div class="form-group">
                                     <label for="plat_number">Plate Number:</label>
                                     <input type="text" class="form-control" id="plat_number" name="plat_number" required value="{{ isset($car) ? $car->plat_number : '' }}">
@@ -96,6 +97,13 @@
                     <option value="Automatic">Automatic</option>
       </select>    
       </div>--}}
+      <script>
+        $('.collapse').on('show.bs.collapse', function() {
+          // Remove the fragment identifier from the URL
+          window.location.hash = '';
+        });
+      </script>
+      
 <script src="{{asset('js/off-canvas.js')}}"></script>
 <script src="{{asset('js/hoverable-collapse.js')}}"></script>
 <script src="{{asset('js/template.js')}}"></script>

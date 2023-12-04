@@ -69,7 +69,11 @@ class CarsController extends Controller
         $car = Cars::findorFail($id);
         return view('cars.create', compact('car'));
     }
-
+    public function bikin(String $id)
+    {
+        $car = Cars::findorFail($id);
+        return view('cars.bikin', compact('car'));
+    }
     // Update the specified resource in storage.
     public function update(Request $request, $id)
     {
@@ -83,7 +87,6 @@ class CarsController extends Controller
         ]);
 
         $cars = Cars::findorFail($id);
-
        
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -100,7 +103,7 @@ class CarsController extends Controller
         $cars->plat_number = $request->input('plat_number');
         $cars->color = $request->input('color');
         $cars->save();
-     //   return redirect()->route('cars.index')->with('success', 'Car updated successfully.');
+        return redirect()->route('cars')->with('success', 'Car updated successfully.');
     }
 
     // Remove the specified resource from storage.
