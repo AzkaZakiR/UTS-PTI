@@ -28,7 +28,7 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Services <i class="ion-ios-arrow-forward"></i></span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{{route('main')}}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Services <i class="ion-ios-arrow-forward"></i></span></p>
             <h1 class="mb-3 bread">Our Services</h1>
           </div>
         </div>
@@ -100,6 +100,7 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+  <script>  console.log("Hello world!");</script>
   <script src="{{asset('js/landingjs/js/jquery.min.js')}}  "></script>
   <script src="{{asset('js/landingjs/js/jquery-migrate-3.0.1.min.js')}}  "></script>
   <script src="{{asset('js/landingjs/js/popper.min.js')}}  "></script>

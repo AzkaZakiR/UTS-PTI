@@ -31,52 +31,91 @@
                         <h2 class="text-center mt-2">Add car</h2>
                         @endif
                         <div class="card-body">
-                            {{-- <form  method="POST" action="{{!empty($car) ? route('updatecars', $car->id) : route('storecars') }}"  enctype="multipart/form-data"> --}}
                             <form method="POST" action="{{ !empty($car) ? route('updatecars', $car->id) : route('storecars') }}" enctype="multipart/form-data">
-                             {{-- action="{{ route('storecars')}}" --}}
-                            {{-- action="{{!empty($car) ? route('updatecars', $car->id) : route('storecars') }}"  enctype="multipart/form-data"> --}}
+                       
                                 @csrf
                                 @if(!empty($car))
                                 @method('PATCH')
                                 @endif
 
-                                <div class="mb-3"> <label for="image" class="form-label">Image</label>
-                                    <input type="file" class="form-control" id="image" name="image" value="{{ isset($car) ? $car->image : '' }}">
+                                <div class="row">
+
+                                    
+                                    {{-- <div id="image-preview" class="image-preview" style="width: 150px; height: 150px;"></div>  --}}
+                                    <div class="col-md-7"> 
+                                        <img id="preview-image" src="{{ isset($car) ?  "url/images/cars/$car->image" : '' }}" alt="Image Preview" style="width: 70%; height: 80%;">
+                                    </div>
+                                    <div class="mb-3 col-md-4"> <label for="image" class="form-label">Image</label>
+                                        <input type="file" class="form-control" id="image" name="image" value="{{ isset($car) ? $car->image : '' }}" onchange="previewImage(event)">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="brand">Brand:</label>
-                                    <input type="text" class="form-control" id="brand" name="brand" required 
-                                    {{-- value="{{old('brand', $car->brand) }}" --}}
-                                    value="{{ isset($car) ? $car->brand : '' }}">
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="brand">Brand:</label>
+                                        <input type="text" class="form-control" id="brand" name="brand" required 
+                                        {{-- value="{{old('brand', $car->brand) }}" --}}
+                                        value="{{ isset($car) ? $car->brand : '' }}">
+                                    </div>
+                            
+                                    <div class="form-group col-md-6">
+                                        <label for="model">Model:</label>
+                                        <input type="text" class="form-control" id="model" name="model" required value="{{ isset($car) ? $car->model : '' }}">
+                                    </div>
                                 </div>
-                        
-                                <div class="form-group">
-                                    <label for="model">Model:</label>
-                                    <input type="text" class="form-control" id="model" name="model" required value="{{ isset($car) ? $car->model : '' }}">
+                                
+                                <div class="row"> 
+                                    <div class="form-group col-md-6">
+                                        <label for="year">Year:</label>
+                                        <input type="text" class="form-control" id="year" name="year" required value="{{ isset($car) ? $car->year : '' }}">
+                                    </div>
+                            
+                                    <div class="mb-3 col-md-6">       
+                                        <label for="status" class="form-label">Status</label>
+                                        <select class="form-control" id="status" name="status">
+                                            <option value="Rented" {{ isset($car) && $car->status === 'Available' ? 'selected' : '' }}>Available</option>      
+                                            <option value="Rented" {{ isset($car) && $car->status === 'Rented' ? 'selected' : '' }}>Rented</option>
+                                            <option value="Maintenance" {{ isset($car) && $car->status === 'Maintenance' ? 'selected' : '' }}>Maintenance</option>
+                                        </select>
+                                    </div>
                                 </div>
-                        
-                                <div class="form-group">
-                                    <label for="year">Year:</label>
-                                    <input type="text" class="form-control" id="year" name="year" required value="{{ isset($car) ? $car->year : '' }}">
+
+                                <div class="row"> 
+                                    <div class="form-group col-md-6">
+                                        <label for="plat_number">Plate Number:</label>
+                                        <input type="text" class="form-control" id="plat_number" name="plat_number" required value="{{ isset($car) ? $car->plat_number : '' }}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="color">Type</label>
+                                        <input type="text" class="form-control" id="color" name="type" value="{{ isset($car) ? $car->type : '' }}"> 
+                                    </div>
+                                </div>  
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="color">Price Per Day</label>
+                                        <input type="text" class="form-control" id="color" name="price_per_day" value="{{ isset($car) ? $car->price_per_day : '' }}"> 
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="color">Price Per Week</label>
+                                        <input type="text" class="form-control" id="color" name="price_per_week" value="{{ isset($car) ? $car->price_per_week : '' }}"> 
+                                    </div>
                                 </div>
-                        
-                                <div class="mb-3">       
-                                    <label for="status" class="form-label">Status</label>
-                                    <select class="form-control" id="status" name="status">
-                                        <option value="Rented" {{ isset($car) && $car->status === 'Available' ? 'selected' : '' }}>Available</option>      
-                                        <option value="Rented" {{ isset($car) && $car->status === 'Rented' ? 'selected' : '' }}>Rented</option>
-                                        <option value="Maintenance" {{ isset($car) && $car->status === 'Maintenance' ? 'selected' : '' }}>Maintenance</option>
-                                    </select>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="color">Seats:</label>
+                                        <input type="number" class="form-control" id="color" name="seats" value="{{ isset($car) ? $car->seats : '' }}"> 
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="color">Engine:</label>
+                                        <input type="text" class="form-control" id="color" name="engine" value="{{ isset($car) ? $car->engine: '' }}"> 
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="plat_number">Plate Number:</label>
-                                    <input type="text" class="form-control" id="plat_number" name="plat_number" required value="{{ isset($car) ? $car->plat_number : '' }}">
-                                </div>
-                        
-                                <div class="form-group">
-                                    <label for="color">Color:</label>
-                                    <input type="text" class="form-control" id="color" name="color" value="{{ isset($car) ? $car->color : '' }}"> 
-                                </div>
+                                {{-- <div class="form-group">
+                                    <label for="color">Gasoline</label>
+                                    <input type="number" class="form-control" id="color" name="gasoline" value="{{ isset($car) ? $car->gasoline : '' }}"> 
+                                </div> --}}
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
@@ -104,11 +143,42 @@
         });
       </script>
       
+      <script>
+        function previewImage(event) {
+            var input = event.target;
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var preview = document.getElementById('image-preview');
+                    preview.innerHTML = '<img src="' + e.target.result + '" alt="Image Preview">';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        function readURL(input) {
+                if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                $('#preview-image').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $(document).ready(function() {
+  $('#image').change(function() {
+    readURL(this);
+  });
+});
+    </script>
 <script src="{{asset('js/off-canvas.js')}}"></script>
 <script src="{{asset('js/hoverable-collapse.js')}}"></script>
 <script src="{{asset('js/template.js')}}"></script>
 <script src="{{asset('js/settings.js')}}"></script>
 <script src="{{asset('js/todolist.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 </html>

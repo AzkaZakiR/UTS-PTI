@@ -4,8 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/masuk.css')}}">
 	{{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css
-	">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
 </head>
 <body>
 	@if(session('error'))
@@ -28,7 +27,7 @@
 		<h3>{{session('message')}}</h3>
         <span class="mdi mdi-close close" onclick="closeAlert()"></span>
 	  </div>
-@endif
+	@endif
 	<div class="container" id="container">
 	{{-- @if(session('message'))
             <div class="alert alert-success">
@@ -57,7 +56,7 @@
 				<label><i class="fa fa-address-book"></i> Role</label>
 				<input type="text" name="roles" class="form-control" value="Guest" readonly>
 			</div>
-			<button>Sign Up</button>
+			<button class="register">Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
@@ -75,7 +74,7 @@
 			<input type="text" placeholder="Email or Username" name="email" />
 			<input type="password" placeholder="Password" name="password"/>
 			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
+			<button  class="login">Sign In</button>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -83,12 +82,12 @@
 			<div class="overlay-panel overlay-left">
 				<h1>Welcome Back!</h1>
 				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
+				<button class="setan" id="signIn">Sign In</button>
 			</div>
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Friend!</h1>
 				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
+				<button class="hantu" id="signUp">Sign Up</button>
 			</div>
 		</div>
 	</div>

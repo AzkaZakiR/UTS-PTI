@@ -43,13 +43,18 @@ class CarsController extends Controller
         $cars->year = $request->input('year');
         $cars->status = $request->input('status');
         $cars->plat_number = $request->input('plat_number');
+        $cars->price_per_day = $request->input('price_per_day');
+        $cars->price_per_week = $request->input('price_per_week');
+        $cars->type = $request->input('type');
+        $cars->seats = $request->input('seats');
+        $cars->engine = $request->input('engine');
+        $cars->transmission = $request->input('transmission');
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();
             $file->move(public_path('images/cars'), $filename);
             $cars->image = $filename;
         }
-        $cars->color = $request->input('color');
       //  $cars->mileage = $request->input('mileage');
         //$cars->transmission = $request->input('transmission');
         

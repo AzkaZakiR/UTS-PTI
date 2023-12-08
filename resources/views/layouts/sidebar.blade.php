@@ -48,30 +48,13 @@
           </ul>
         </div>
       </li>
-      {{-- <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-          <i class="menu-icon mdi mdi-plus-circle"></i>
-          <span class="menu-title">Tables</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="tabel">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"><a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{route('cars')}}">Car Data</a> </li>
-          </ul>
-        </div>
-      </li> --}}
+    
       <li  class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#cars" aria-expanded="false" aria-controls="cars">
           <i class="menu-icon mdi mdi-car"></i>
           <span class="menu-title">Car Data</span>
-          {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
-            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
-            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
-            <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg> --}}
         </a>
         <div class="collapse" id="cars">
-        {{-- <ul class="nav flex-column sub-menu" style="list-style-type: none;"> --}}
           <ul class="flex-column sub-menu list-group" >
             <li class="list-group-item">
               <a class="nav-link" href="{{route('cars')}}" style="list-style-type: none;">

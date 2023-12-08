@@ -20,6 +20,7 @@ class Users extends Model
         'roles',
         'active',
         'password',
+        'phone',
         'rememberToken',
     ];
 

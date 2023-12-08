@@ -95,7 +95,7 @@
                         </td>
                         {{-- <td>{{$item->plat_number}}</td> --}}
                         <td> 
-                          <a href="{{route('editcars', $item->id)}}" class="btn btn-info">Edit</a> 
+                          <a href="{{route('editcars', ['id' => $item->id])}}" class="btn btn-info">Edit</a> 
                           <form method="POST" action="{{ route('deletecars', $item->id)}}"> 
                             @csrf
                       @method('DELETE')
@@ -139,6 +139,10 @@
       </div>
     </div>
   </div>
+
+    <script>
+      console.log("Hello fafaf!");
+    </script>
       <script src="{{asset('vendors/js/vendor.bundle.base.js')}}"></script>
         <script src="{{asset('vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
         <!-- endinject -->

@@ -18,7 +18,7 @@
       <ul class="navbar-nav">
         <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
           <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">{{Auth::user()->username}}</span></h1>
-          <h3 class="welcome-sub-text">Your performance summary this week</h3>
+          <h4 class="welcome-sub-text">Your performance summary this week</h4>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">

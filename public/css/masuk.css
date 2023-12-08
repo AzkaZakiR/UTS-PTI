@@ -45,8 +45,8 @@ a {
 
 button {
     border-radius: 20px;
-    border: 1px solid #ff4b2b;
-    background-color: #ff4b2b;
+    border: 1px solid #1089ff;
+    background-color: #1089ff;
     color: #ffffff;
     font-size: 12px;
     font-weight: bold;
@@ -54,6 +54,7 @@ button {
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
+    cursor: pointer;
 }
 
 button:active {
@@ -64,12 +65,45 @@ button:focus {
     outline: none;
 }
 
+.register:hover {
+    background-color: #1d74df;
+    /* transform: scale(1.1); */
+}
+.login:hover {
+    background-color: #1d74df;
+    /* transform: scale(1.1); */
+}
 button.ghost {
     background-color: transparent;
     border-color: #ffffff;
+    cursor: pointer;
 }
-.button.ghost:hover {
-    background-color: white;
+.hantu {
+    background: linear-gradient(to right, #1089ff 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    border-color: #ffffff;
+    color: white;
+    transition: background-position 0.3s, color 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+.hantu:hover {
+    background-position: left bottom;
+    color: white;
+    border-color: white;
+}
+.setan {
+    background: linear-gradient(to left, transparent 50%, #01d28e 50%);
+    /* background-color: transparent; */
+    background-size: 200% 100%;
+    background-position: -100%;
+    border-color: #ffffff;
+    color: white;
+    transition: background-position 0.3s, color 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+.setan:hover {
+    background-position: left bottom;
     color: white;
     border-color: white;
 }
@@ -166,8 +200,8 @@ input {
 
 .overlay {
     background: #ff416c;
-    background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    background: -webkit-linear-gradient(to right, #1089ff, #01d28e);
+    background: linear-gradient(to right, #1089ff, #01d28e);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;

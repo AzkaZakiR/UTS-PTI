@@ -20,12 +20,10 @@ use App\Http\Controllers\LandingPageController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingPageController::class, 'index'])->name('index');
 
 //Login Action
-Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/admin/login', [LoginController::class, 'actionlogin'])->name('actionlogin');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
 
@@ -34,15 +32,21 @@ Route::get('/register', [RegisterController::class, 'register'])->name('register
 Route::post('/register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
 
 //Landing Page Routes
-Route::get('/landing', [LandingPageController::class, 'index'])->name('landing');
+// Route::get('/main', [LandingPageController::class, 'main'])->name('main');
+Route::get('/main', [LandingPageController::class, 'index'])->name('main');
 Route::get('/about', [LandingPageController::class, 'about'])->name('about');
-Route::get('services', [LandingPageController::class, 'services'])->name('services');
+Route::get('/services', [LandingPageController::class, 'services'])->name('services');
+Route::get('/pricing', [LandingPageController::class, 'pricing'])->name('pricing');
+Route::get('/carslist', [LandingPageController::class, 'cars'])->name('carslist');
+Route::get('/car/{id}', [LandingPageController::class, 'detailcar'])->name('cardetail');
+Route::get('/checkoutcar/{id}', [LandingPageController::class, 'checkoutcar'])->name('checkoutcar')->middleware('auth');
 
 //Dashboard routes
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 //Cars Route
-Route::get('/cars', [CarsController::class, 'index'])->name('cars')->middleware('auth');
+// Route::middleware()
+Route::get('/cars', [CarsController::class, 'index'])->name('cars')->middleware('isadmin');
 Route::get('/addcars', [CarsController::class, 'create'])->name('addcar')->middleware('auth');
 Route::post('/cars/add', [CarsController::class, 'store'])->name('storecars')->middleware('auth');
 Route::get('/cars/edit/{id}', [CarsController::class, 'edit'])->name('editcars')->middleware('auth');
@@ -50,5 +54,6 @@ Route::get('/cars/edit/update/{id}', [CarsController::class, 'bikin'])->name('ed
 Route::patch('/cars/update/{id}', [CarsController::class, 'update'])->name('updatecars')->middleware('auth');
 Route::delete('/cars/delete/{id}', [CarsController::class, 'destroy'])->name('deletecars')->middleware('auth');
 
-
+//Transactio Routes
 Route::get('/transactions', [TransactionsController::class, 'index'])->name('transactions');
+Route::post('/createtransactions/{id}',[TransactionsController::class, 'store'])->name('createtransactions')->middleware('auth');
