@@ -12,7 +12,11 @@ class LoginController extends Controller
 
     public function login(){
         if (Auth::check()){
-            return redirect('cars');
+            if (Auth::user()->role === 'admin') {
+                return redirect('cars');
+            } else {
+                return redirect('main');
+            }
         }else{ 
          return view('auth.masuk');
         }

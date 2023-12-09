@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cars;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
 
 class CarsController extends Controller
 {
     // Display a listing of the resource.
     public function index()
     {
-        $cars = Cars::all();
+        // $cars = Cars::all()->paginate(7);
+        $cars = Cars::paginate(7);
 
         return view('cars.show', compact('cars'));
     }
@@ -31,6 +33,8 @@ class CarsController extends Controller
             'year' => 'required|numeric', // Add more specific validation rules
             'status' => 'required',
             'plat_number' => 'required',
+            'price_per_day' => 'required|numeric',
+            'price_per_day' => 'required|numeric',
             //'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Example image validation
         ]);
         $data = $request->all();
@@ -49,11 +53,15 @@ class CarsController extends Controller
         $cars->seats = $request->input('seats');
         $cars->engine = $request->input('engine');
         $cars->transmission = $request->input('transmission');
+        $cars->gasoline = $request->input('gasoline');
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();
             $file->move(public_path('images/cars'), $filename);
             $cars->image = $filename;
+        } elseif ($request->filled('image_link')) {
+            // Handle image link
+            $cars->image = $request->input('image_link');
         }
       //  $cars->mileage = $request->input('mileage');
         //$cars->transmission = $request->input('transmission');
@@ -73,11 +81,6 @@ class CarsController extends Controller
     {
         $car = Cars::findorFail($id);
         return view('cars.create', compact('car'));
-    }
-    public function bikin(String $id)
-    {
-        $car = Cars::findorFail($id);
-        return view('cars.bikin', compact('car'));
     }
     // Update the specified resource in storage.
     public function update(Request $request, $id)

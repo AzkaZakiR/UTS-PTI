@@ -1,0 +1,19 @@
+Proyek Rental Mobil
+
+Nama:  Azka Zaki R
+NIM:   10121203
+Kelas: IF5
+
+Cara Menjalankan:
+
+1. Clone project ini atau download melalui ZIP
+2. Jalankan Composer Install di direktori folder
+3. rename .env.example menjadi .env atau run command copy .env.example .env
+4. Buka File env dan ganti konfigurasinya menyesuaikan settingan Database
+5. Run commmand php artisan key:generate
+6. Run command php artisan migrate kemudian php artisan db:seed untuk seed Database atau
+6. Run command php artisan migrate:fresh --seed untuk seed Database atau import database rentacar.sql
+7. Run php artisan serve untuk Menjalankan aplikasi
+
+
+

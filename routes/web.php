@@ -17,6 +17,9 @@ use App\Http\Controllers\LandingPageController;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
+Nama: Azka Zaki R
+NIM: 10121203
+Kelas: IF-5
 |
 */
 
@@ -42,18 +45,19 @@ Route::get('/car/{id}', [LandingPageController::class, 'detailcar'])->name('card
 Route::get('/checkoutcar/{id}', [LandingPageController::class, 'checkoutcar'])->name('checkoutcar')->middleware('auth');
 
 //Dashboard routes
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 //Cars Route
 // Route::middleware()
-Route::get('/cars', [CarsController::class, 'index'])->name('cars')->middleware('isadmin');
-Route::get('/addcars', [CarsController::class, 'create'])->name('addcar')->middleware('auth');
-Route::post('/cars/add', [CarsController::class, 'store'])->name('storecars')->middleware('auth');
-Route::get('/cars/edit/{id}', [CarsController::class, 'edit'])->name('editcars')->middleware('auth');
-Route::get('/cars/edit/update/{id}', [CarsController::class, 'bikin'])->name('editmobil');
-Route::patch('/cars/update/{id}', [CarsController::class, 'update'])->name('updatecars')->middleware('auth');
-Route::delete('/cars/delete/{id}', [CarsController::class, 'destroy'])->name('deletecars')->middleware('auth');
+Route::middleware(['isadmin'])->group(function () {
+    Route::get('/cars', [CarsController::class, 'index'])->name('cars');
+    Route::get('/addcars', [CarsController::class, 'create'])->name('addcar');
+    Route::post('/cars/add', [CarsController::class, 'store'])->name('storecars');
+    Route::get('/cars/edit/{id}', [CarsController::class, 'edit'])->name('editcars');
+    Route::patch('/cars/update/{id}', [CarsController::class, 'update'])->name('updatecars');
+    Route::delete('/cars/delete/{id}', [CarsController::class, 'destroy'])->name('deletecars');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/transactions', [TransactionsController::class, 'index'])->name('transactions');
+});
 
 //Transactio Routes
-Route::get('/transactions', [TransactionsController::class, 'index'])->name('transactions');
 Route::post('/createtransactions/{id}',[TransactionsController::class, 'store'])->name('createtransactions')->middleware('auth');

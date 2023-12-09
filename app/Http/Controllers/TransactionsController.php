@@ -6,14 +6,30 @@ use Illuminate\Http\Request;
 use App\Models\Transactions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 class TransactionsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+     */ 
     public function index()
     {
         //
+        //$transactions = Transactions::all();
+        // $transactions = Transactions::with(['car', 'customer'])->get();
+        $transactions = DB::table('transactions')->join('cars', 'transactions.car_id', '=', 'cars.id')->join('users', 'transactions.id_customer', '=', 'users.id')
+        ->select(
+            'transactions.id',
+            'transactions.status',
+            'transactions.total_price',
+            'transactions.rental_start as rental_start',
+            'transactions.rental_end as rental_end',
+            'cars.brand as car_brand',
+            'cars.model as car_model',
+            'users.username as customer_name'
+        ) ->get();
+   
+        return view('admin.transactions', compact('transactions'));
     }
 
     /**
@@ -40,7 +56,8 @@ class TransactionsController extends Controller
         'rental_end' => 'required',
        ]);
 
-        $data = $request->all();
+        $transaksi = new Transactions;
+        $transaksi->total_price = $request->input('total_pricetotal_price');
 
         $rental_start = Carbon::createFromFormat('m/d/Y', $request->input('rental_start'));
         $rental_end = Carbon::createFromFormat('m/d/Y', $request->input('rental_end'));
@@ -66,7 +83,8 @@ class TransactionsController extends Controller
             'total_price' => $request->input('total_price'),
             'rental_start' => $rental_start,
             'rental_end' => $rental_end,
-            'status' => 'success', // Adjust as needed
+            'status' => "success", // Adjust as needed
+            // 'status' => $request->input('status'), // Adjust as needed
         ]);
         $transaction->save();
         return redirect()->route('main')->with('success', 'Car booked Successfully.');

@@ -126,8 +126,10 @@
                       </div>
                       <div class="d-flex justify-content-between mb-3">
                         <p class="textmuted fw-bold">Total</p>
-                        <div class="d-flex align-text-top"><span class="h4" id="total_price"></span></div>
+                        <div class="d-flex align-text-top" ><span class="h4" id="total_price" name="total_price" >        
+                        </span></div>
                       </div>
+                      <input type="hidden" id="total_price_input" name="total_price">
                     </div>
                   </div>
                   <div class=" mb-4 p-0">
@@ -180,6 +182,10 @@
                 let formattedTotalPrice = total_price.toLocaleString();
 
                 $("#total_price").text(formattedTotalPrice);
+                $("#total_price_input").val(formattedTotalPrice);
+                var total_harga = document.getElementById('total_price_input').val;
+                console.log("Total harga", price_week);
+
               }
           });
       });

@@ -37,7 +37,7 @@
               <div class="card-body text-center mt-5 ">
                 <h4 class="card-title">Cars Data </h4>
                 <p class="card-description">
-                  Add class <code>.table-hover</code>
+                  See Status of Cars
                   @if(session('message'))
                 <div class="alert alert-{{ session('status') }} alert-dismissible fade show" role="alert">
                     <strong>{{ session('message') }}</strong>
@@ -72,17 +72,8 @@
                         {{-- <td>{{$counter++}}</td> --}}
                         <td>{{$loop->index+1}}</td>
                         <td><img src="{{ url('images/cars/'.$item->image) }}"  style="height: 100px; width: 150px;"> </td>
-                        {{-- <td>
-                          @if($user->image)
-                          <img src="{{ asset('storage/images/'.$user->image) }}" style="height: 50px;width:100px;">
-                          @else 
-                          <span>No image found!</span>
-                          @endif
-                      </td> --}}
                         <td>{{$item->brand}}</td>
                         <td>{{$item->model}}</td>
-                        {{-- <td class="text-danger"> {{$item->year}} <i class="ti-arrow-down"></i></td> --}}
-
                         <td>
                           @if($item->status == "Available")
                           <label class="badge badge-success">{{$item->status}}</label>
@@ -98,42 +89,18 @@
                           <a href="{{route('editcars', ['id' => $item->id])}}" class="btn btn-info">Edit</a> 
                           <form method="POST" action="{{ route('deletecars', $item->id)}}"> 
                             @csrf
-                      @method('DELETE')
+                            @method('DELETE')
                             <button href="" class="btn btn-danger">Delete</button>
                           </form>
                         </td>
                       </tr>
-                      @endforeach
-                      <tr class="percobaan">
-                        <td class="percobaan">Jacob</td>
-                        <td>Photoshop</td>
-                        <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                        <td><label class="badge badge-danger">Pending</label></td>
-                      </tr>
-                      <tr>
-                        <td>Messsy</td>
-                        <td>Flash</td>
-                        <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                        <td><label class="badge badge-warning">In progress</label></td>
-                      </tr>
-                      <tr>
-                        <td>John</td>
-                        <td>Premier</td>
-                        <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
-                        <td><label class="badge badge-info">Fixed</label></td>
-                      </tr>
-                      <tr>
-                        <td>Peter</td>
-                        <td>After effects</td>
-                        <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                        <td><label class="badge badge-success">Completed</label></td>
-                      </tr>
-
+                      @endforeach     
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
+            {{$cars->links()}}
           </div>
         </div>
       </div>

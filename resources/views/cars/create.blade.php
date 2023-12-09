@@ -31,13 +31,24 @@
                         <h2 class="text-center mt-2">Add car</h2>
                         @endif
                         <div class="card-body">
+                            @error('brand')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <form method="POST" action="{{ !empty($car) ? route('updatecars', $car->id) : route('storecars') }}" enctype="multipart/form-data">
                        
                                 @csrf
                                 @if(!empty($car))
                                 @method('PATCH')
                                 @endif
-
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li> <h4>{{ $error }}</h4></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                                 <div class="row">
 
                                     
@@ -47,7 +58,12 @@
                                     </div>
                                     <div class="mb-3 col-md-4"> <label for="image" class="form-label">Image</label>
                                         <input type="file" class="form-control" id="image" name="image" value="{{ isset($car) ? $car->image : '' }}" onchange="previewImage(event)">
+                                        <label for="image" class="form-label my-3">Link to Image instead</label>
+                                        <input type="text" class="form-control" id="image_link" name="image_link" required value="{{ isset($car) ? $car->image : '' }}">
                                     </div>
+                                    {{-- <div class="mb-3 col-md-4"> <label for="image" class="form-label">Link to Image instead</label>
+                                        <input type="text" class="form-control" id="image_link" name="image_link" required value="{{ isset($car) ? $car->image : '' }}">
+                                    </div> --}}
                                 </div>
 
                                 <div class="row">
@@ -94,11 +110,11 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="color">Price Per Day</label>
-                                        <input type="text" class="form-control" id="color" name="price_per_day" value="{{ isset($car) ? $car->price_per_day : '' }}"> 
+                                        <input type="number" class="form-control" id="color" name="price_per_day" value="{{ isset($car) ? $car->price_per_day : '' }}"> 
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="color">Price Per Week</label>
-                                        <input type="text" class="form-control" id="color" name="price_per_week" value="{{ isset($car) ? $car->price_per_week : '' }}"> 
+                                        <input type="number" class="form-control" id="color" name="price_per_week" value="{{ isset($car) ? $car->price_per_week : '' }}"> 
                                     </div>
                                 </div>
 
@@ -112,10 +128,17 @@
                                         <input type="text" class="form-control" id="color" name="engine" value="{{ isset($car) ? $car->engine: '' }}"> 
                                     </div>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label for="color">Gasoline</label>
-                                    <input type="number" class="form-control" id="color" name="gasoline" value="{{ isset($car) ? $car->gasoline : '' }}"> 
-                                </div> --}}
+                                <div class="row">
+                                    <div class="form-group  col-md-6">
+                                        <label for="color">Gasoline</label>
+                                        <input type="text" class="form-control" id="color" name="gasoline" value="{{ isset($car) ? $car->gasoline : '' }}"> 
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="color">Transmission:</label>
+                                        <input type="text" class="form-control" id="color" name="transmission" value="{{ isset($car) ? $car->transmission: '' }}"> 
+                                    </div>
+                                </div>
+                                
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>

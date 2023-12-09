@@ -248,13 +248,13 @@
                               <div class="col-sm-12">
                                 <div class="statistics-details d-flex align-items-center justify-content-between">
                                   <div>
-                                    <p class="statistics-title">Bounce Rate</p>
-                                    <h3 class="rate-percentage">32.53%</h3>
-                                    <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>
+                                    <p class="statistics-title">Number Of Cars</p>
+                                    <h3 class="rate-percentage">{{$carCount}} </h3>
+                                    <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>10%</span></p>
                                   </div>
                                   <div>
-                                    <p class="statistics-title">Page Views</p>
-                                    <h3 class="rate-percentage">7,682</h3>
+                                    <p class="statistics-title">Number Of Transactions</p>
+                                    <h3 class="rate-percentage">{{$transactionCount}}</h3>
                                     <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0.1%</span></p>
                                   </div>
                                   <div>
@@ -282,7 +282,7 @@
                             </div>
                             <div class="row">
                               <div class="col-lg-8 d-flex flex-column">
-                                <div class="row flex-grow">
+                                {{-- <div class="row flex-grow">
                                   <div class="col-12 grid-margin stretch-card">
                                     <div class="card card-rounded">
                                       <div class="card-body">
@@ -321,15 +321,15 @@
                                       </div>
                                     </div>
                                   </div>
-                                </div>
+                                </div> --}}
                                 <div class="row flex-grow">
                                   <div class="col-12 grid-margin stretch-card">
                                     <div class="card card-rounded">
                                       <div class="card-body">
                                         <div class="d-sm-flex justify-content-between align-items-start">
                                           <div>
-                                            <h4 class="card-title card-title-dash">Pending Requests</h4>
-                                            <p class="card-subtitle card-subtitle-dash">You have 50+ new requests</p>
+                                            <h4 class="card-title card-title-dash">Pending Transactions</h4>
+                                            <p class="card-subtitle card-subtitle-dash">You have multiple pending Transactions that needs to be accepted</p>
                                           </div>
                                           <div>
                                             <button class="btn btn-primary btn-lg text-white mb-0 me-0" type="button"><i class="mdi mdi-account-plus"></i>Add new member</button>
