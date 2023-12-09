@@ -102,6 +102,9 @@ class CarsController extends Controller
             $file->move(public_path('images/cars'), $filename);
             Storage::delete('images/cars/'.$cars->image); //delete old images
             $cars->image = $filename;
+        }elseif ($request->filled('image_link')) {
+            // Handle image link
+            $cars->image = $request->input('image_link');
         }
 
         $cars->brand = $request->input('brand');
@@ -109,7 +112,13 @@ class CarsController extends Controller
         $cars->year = $request->input('year');
         $cars->status = $request->input('status');
         $cars->plat_number = $request->input('plat_number');
-        $cars->color = $request->input('color');
+        $cars->price_per_day = $request->input('price_per_day');
+        $cars->price_per_week = $request->input('price_per_week');
+        $cars->type = $request->input('type');
+        $cars->seats = $request->input('seats');
+        $cars->engine = $request->input('engine');
+        $cars->transmission = $request->input('transmission');
+        $cars->gasoline = $request->input('gasoline');
         $cars->save();
         return redirect()->route('cars')->with('success', 'Car updated successfully.');
     }

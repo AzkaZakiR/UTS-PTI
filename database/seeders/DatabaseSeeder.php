@@ -15,29 +15,29 @@ class DatabaseSeeder extends Seeder
     {
        // \App\Models\Users::factory(10)->create();
 
-        // Users::create([
-        //     'username' => 'admin',
-        //     'email' => 'admin@gmail.com',
-        //     'roles' => 'admin',
-        //     'active' => 1,
-        //     'password' => bcrypt('admin'),
-        // ]);
+        Users::create([
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'roles' => 'admin',
+            'active' => 1,
+            'password' => bcrypt('admin'),
+        ]);
 
-        // Users::create([
-        //     'username' => 'Jono',
-        //     'email' => 'Jono@g.com',
-        //     'roles' => 'admin',
-        //     'active' => 1,
-        //     'password' => bcrypt('jono'),
-        // ]);
+        Users::create([
+            'username' => 'Jono',
+            'email' => 'Jono@g.com',
+            'roles' => 'admin',
+            'active' => 1,
+            'password' => bcrypt('jono'),
+        ]);
 
-        // Users::create([
-        //     'username' => 'John Doe',
-        //     'email' => 'john@gmail.com',
-        //     'roles' => 'customer',
-        //     'active' => 1,
-        //     'password' => bcrypt('john'),
-        // ]);
+        Users::create([
+            'username' => 'John Doe',
+            'email' => 'john@gmail.com',
+            'roles' => 'customer',
+            'active' => 1,
+            'password' => bcrypt('john'),
+        ]);
         Cars::create([
             'brand' => 'Toyota',
             'model' => 'Camry',

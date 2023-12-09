@@ -130,8 +130,14 @@
               @foreach ($cars as $car)
               <div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url('/images/cars/{{$car->image}}');">
-		    					</div>
+                  @if(strpos($car->image, 'https') !== false )
+                  <div class="img rounded d-flex align-items-end" style="background-image: url('{{$car->image}}');">
+                  </div>
+                  {{-- <img class="img rounded d-flex align-items-end" src="{{$car->image}}" style="height: 100px; width: 150px;" style="background-image: ">  --}}
+                  @else
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url('/images/cars/{{$car->image}}');"> 		    					</div>
+
+                  @endif
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">{{$car->brand}} {{$car->model}}  </a></h2>
 		    						<div class="d-flex mb-3">

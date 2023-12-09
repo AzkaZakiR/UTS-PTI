@@ -4,6 +4,9 @@ Nama:  Azka Zaki R
 NIM:   10121203
 Kelas: IF5
 
+Login menggunakan Akun:
+username/email: admin/admin@gmail
+password: admin 
 Cara Menjalankan:
 
 1. Clone project ini atau download melalui ZIP

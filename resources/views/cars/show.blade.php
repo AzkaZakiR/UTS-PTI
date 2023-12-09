@@ -71,7 +71,13 @@
                       <tr>
                         {{-- <td>{{$counter++}}</td> --}}
                         <td>{{$loop->index+1}}</td>
-                        <td><img src="{{ url('images/cars/'.$item->image) }}"  style="height: 100px; width: 150px;"> </td>
+                        <td>
+                          @if(strpos($item->image, 'https') !== false )
+                          <img src="{{$item->image}}" style="height: 100px; width: 150px;"> 
+                          @else
+                          <img src="{{ url('images/cars/'.$item->image) }}"  style="height: 100px; width: 150px;"> 
+                          @endif
+                        </td>
                         <td>{{$item->brand}}</td>
                         <td>{{$item->model}}</td>
                         <td>
